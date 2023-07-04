@@ -1,4 +1,5 @@
-SELECT
+\\--Join 3 tables Weather Data, Sales Transactions, and Main Flavors by time and record_id--\\
+SELECT 
  weather.record_id as record_id, 
  weather.day as day, 
  weather.date AS date, 
@@ -25,3 +26,16 @@ AND
  sales.location = 'Fancy Cake Pop Kenwood'
 AND 
  sales.error_id = 'NOERR01'
+
+\\--join main flavors and specialty flavor table--\\
+SELECT
+ flavor, record_idm date, count
+FROM
+ `eng-hash-367405.fcpanalysis.mainFlavors`
+UNION ALL 
+ SELECT 
+  specialty_flavor, record_id, date, specialty_count
+FROM
+ `eng-hash-367405.fcpanalysis.specialtyFlavor`
+ORDER BY
+ record_id ASC
